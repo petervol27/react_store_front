@@ -1,12 +1,16 @@
 function Product({ product, index }) {
-  let color = index;
+  let defineStyle = () => {
+    if (index % 2 === 0) {
+      return 'panel panel-primary';
+    } else if (index % 3 === 0) {
+      return 'panel panel-danger';
+    } else {
+      return 'panel panel-success';
+    }
+  };
   return (
     <div className="col-sm-4">
-      <div
-        className={
-          color % 2 === 0 ? 'panel panel-primary' : 'panel panel-danger'
-        }
-      >
+      <div className={defineStyle()}>
         <div className="panel-heading">{product.name}</div>
         <div className="panel-body">
           <img

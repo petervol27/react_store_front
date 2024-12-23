@@ -9,6 +9,7 @@ import ProductsList from './components/ProductsList';
 
 function App() {
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     getAllProducts().then((products) => {
       setProducts(products);
