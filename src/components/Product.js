@@ -23,7 +23,7 @@ function Product({ product, index }) {
         <div className="panel-footer">
           <div className="fw-bold">{product.price}₪</div>
 
-          <button className="btn btn-primary text-center mt-3">
+          <button className="btn btn-primary text-center mt-3" >
             Add To cart
           </button>
         </div>

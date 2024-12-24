@@ -34,3 +34,20 @@ footer {
 .cart-list {
   list-style: none;
 }
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.user-greet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: violet;
+  padding: 15px;
+  font-weight: bold;
+}
