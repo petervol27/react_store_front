@@ -1,28 +1,25 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import CartContext from '../CartContext';
 import { Link } from 'react-router-dom';
-import { getUserName } from '../api';
+import { logout, getCart } from '../api';
 function Nav() {
   const { cart, setCart } = useContext(CartContext);
-  const [userName, setUserName] = useState('');
-  const length = cart.length;
-  const checkUser = () => {
-    const token = localStorage.getItem('access');
-    getUserName(token).then((username) => {
-      if (username === 'Error') {
-        setUserName('');
-      } else {
-        setUserName(username);
-      }
-    });
-  };
+  const { user, setUser } = useContext(CartContext);
   useEffect(() => {
-    checkUser();
-    const interval = setInterval(() => {
-      checkUser();
-    }, 500);
-    return () => clearInterval(interval);
+    const name = localStorage.getItem('name');
+    if (name) {
+      setUser(name);
+    } else {
+      return;
+    }
+    if (localStorage.getItem('access')) {
+      getCart().then((fetchedCart) => {
+        setCart(fetchedCart);
+      });
+    }
   }, []);
+  const access = localStorage.getItem('access');
+
   return (
     <nav className="navbar navbar-inverse">
       <div className="container-fluid">
@@ -48,19 +45,36 @@ function Nav() {
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li>
-              <Link to={'/login'}>
-                <span className="glyphicon glyphicon-user"></span> Your Account
-              </Link>
-            </li>
+            {access ? (
+              ''
+            ) : (
+              <li>
+                <Link to={'/login'}>
+                  <span className="glyphicon glyphicon-user"></span> Your
+                  Account
+                </Link>
+              </li>
+            )}
             <li>
               <Link to="/cart">
                 <span className="glyphicon glyphicon-shopping-cart"></span>
-                Cart:({length})
+                Cart:({cart.length})
               </Link>
             </li>
             <li className="user-greet">
-              {userName === '' ? '' : `Welcome ${userName}!`}
+              {user === '' ? (
+                ''
+              ) : (
+                <>
+                  Welcome {user}!
+                  <button
+                    className="btn btn-warning logout-btn"
+                    onClick={() => logout()}
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
             </li>
           </ul>
         </div>

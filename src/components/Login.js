@@ -1,18 +1,23 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { login } from '../api';
 import { useNavigate } from 'react-router-dom';
+import CartContext from '../CartContext';
 
 function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const { cart, setCart } = useContext(CartContext);
+  const { setUser } = useContext(CartContext);
   const getLogged = (e) => {
     e.preventDefault();
     login(userName, password).then((res) => {
       if (res.name === 'AxiosError') {
         setError('Invalid Username or password');
       } else {
+        setUser(userName);
+        localStorage.setItem('name', userName);
         localStorage.setItem('access', res.access);
         localStorage.setItem('refresh', res.refresh);
         alert('Login successful');

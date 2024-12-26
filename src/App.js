@@ -13,8 +13,7 @@ import Cart from './components/Cart';
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const [accessToken, setAccessToken] = useState(false);
-  const [refreshToken, setRefreshToken] = useState(false);
+  const [user, setUser] = useState('');
   useEffect(() => {
     getAllProducts().then((products) => {
       setProducts(products);
@@ -27,6 +26,8 @@ function App() {
           value={{
             cart,
             setCart,
+            user,
+            setUser,
           }}
         >
           <JumboTron />

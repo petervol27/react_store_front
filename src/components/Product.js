@@ -1,3 +1,5 @@
+import { addToCart } from '../api';
+
 function Product({ product, index }) {
   let defineStyle = () => {
     if (index % 2 === 0) {
@@ -23,7 +25,10 @@ function Product({ product, index }) {
         <div className="panel-footer">
           <div className="fw-bold">{product.price}₪</div>
 
-          <button className="btn btn-primary text-center mt-3" >
+          <button
+            className="btn btn-primary text-center mt-3"
+            onClick={() => addToCart(product)}
+          >
             Add To cart
           </button>
         </div>

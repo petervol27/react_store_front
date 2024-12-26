@@ -44,10 +44,11 @@ footer {
   padding-bottom: 10px;
 }
 .user-greet {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: violet;
-  padding: 15px;
+  /* padding: 5px 10px 10px 10px; */
+  padding-top: 10px;
   font-weight: bold;
+}
+.logout-btn {
+  margin-left: 10px;
 }
