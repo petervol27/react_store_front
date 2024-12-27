@@ -33,6 +33,7 @@ footer {
 
 .cart-list {
   list-style: none;
+  padding: 0;
 }
 
 .login-form {
@@ -51,4 +52,12 @@ footer {
 }
 .logout-btn {
   margin-left: 10px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 1px green solid;
 }

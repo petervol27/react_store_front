@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import CartContext from '../CartContext';
 import { Link } from 'react-router-dom';
-import { logout, getCart } from '../api';
+import { getCart } from '../api';
 function Nav() {
   const { cart, setCart } = useContext(CartContext);
   const { user, setUser } = useContext(CartContext);
@@ -19,7 +19,14 @@ function Nav() {
     }
   }, []);
   const access = localStorage.getItem('access');
-
+  const logout = () => {
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    localStorage.removeItem('name');
+    setCart([]);
+    setUser('');
+    alert('Thank you please come again!');
+  };
   return (
     <nav className="navbar navbar-inverse">
       <div className="container-fluid">

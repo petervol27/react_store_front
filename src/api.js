@@ -6,6 +6,7 @@ export const getAllProducts = async () => {
   const res = await axios.get('http://127.0.0.1:8000/products/');
   return res.data;
 };
+
 // --------------------------------------------------------------------
 // Carts API
 
@@ -31,6 +32,7 @@ export const addToCart = async (product) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    alert('Product added to Cart');
     return res.data;
   } else {
     return false;
@@ -50,11 +52,4 @@ export const login = async (username, password) => {
   }
 };
 
-export const logout = () => {
-  localStorage.removeItem('access');
-  localStorage.removeItem('refresh');
-  localStorage.removeItem('name');
-  alert('Thank you please come again!');
-  window.location.reload();
-};
 // --------------------------------------------------------------------
