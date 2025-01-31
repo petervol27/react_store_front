@@ -3,7 +3,7 @@ import axios from 'axios';
 // Products API
 
 export const getAllProducts = async () => {
-  const res = await axios.get('http://127.0.0.1:8000/products/');
+  const res = await axios.get('https://fakestoreapi.com/products');
   return res.data;
 };
 
